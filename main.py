@@ -13,6 +13,7 @@ history= []
 def convert_currency(amount, from_currency, to_currency):
     try:
         if from_currency in get_favorite_currencies():
+            # get_favorite_currencies = from_currency
             print(f"Utilisation de la devise préférée: {from_currency}")
         else:
             print(f"La devise {from_currency} n'est pas une devise préférée.")
@@ -98,6 +99,7 @@ def main():
                 if favorite_currencies_list:
                     print("Devises préférées disponibles:", favorite_currencies_list)
                     to_currency = input("Choisissez la devise de destination parmi les devises préférées : ")
+                    # marche pas :(, prend que le premier index
                 else:
                     print("Aucune devise préférée disponible. Veuillez en ajouter d'abord.")
                     continue
@@ -119,9 +121,6 @@ def main():
                 add_favorite_currency(add_currency)
                 print(f"{currency} a été ajouté à vos favories.")
                 # marche pas :(
-
-        
-
 
         elif choice == '3':
             currency = input("Entrez le code de la devise préférée à ajouter : ")

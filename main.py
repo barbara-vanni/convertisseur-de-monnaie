@@ -7,6 +7,7 @@ from forex_python.converter import *
 
 c = CurrencyRates()
 history= []
+favorite_currencies = []
 
 
 def convert_currency(amount, from_currency, to_currency):
@@ -28,6 +29,7 @@ def convert_currency(amount, from_currency, to_currency):
 def add_currency(currency, rate):
     c.get_rate(currency, rate)
 
+
 def add_favorite_currency(currency):
 
     favorites = get_favorite_currencies()
@@ -42,6 +44,9 @@ def get_favorite_currencies():
         return favorites
     except FileNotFoundError:
         return []
+    
+
+
 
 def print_conversion_history():
     print("Historique des conversions:")
@@ -56,8 +61,9 @@ def main():
         print("1. Convertir une somme")
         print("2. Ajouter une devise")
         print("3. Ajouter une devise préférée")
-        print("4. Afficher l'historique des conversions")
-        print("5. Quitter")
+        print("4. Afficher mes devises préférées")
+        print("5. Afficher l'historique des conversions")
+        print("6. Quitter")
 
         choice = input("Choisissez une option (1-5): ")
 
@@ -81,9 +87,12 @@ def main():
             print(f"{currency} a été ajouté aux devises préférées.")
 
         elif choice == '4':
-            print_conversion_history()
+            print(*get_favorite_currencies())
 
         elif choice == '5':
+            print_conversion_history()
+
+        elif choice == '6':
             print("Au revoir!")
             break
 
